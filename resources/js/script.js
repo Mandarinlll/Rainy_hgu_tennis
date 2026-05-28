@@ -2,6 +2,33 @@
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".site-nav");
 
+  function getPageName(path) {
+    var cleanPath = path.split("#")[0].split("?")[0];
+    var pageName = cleanPath.substring(cleanPath.lastIndexOf("/") + 1);
+
+    return pageName || "index.html";
+  }
+
+  if (nav) {
+    var currentPage = getPageName(window.location.pathname);
+    var navLinks = Array.prototype.slice.call(nav.querySelectorAll("a"));
+
+    navLinks.forEach(function (link) {
+      var linkUrl = new URL(link.getAttribute("href"), window.location.href);
+      var linkPage = getPageName(linkUrl.pathname);
+      var isCurrentPage = linkPage === currentPage;
+
+      link.classList.toggle("is-current", isCurrentPage);
+
+      if (isCurrentPage) {
+        link.setAttribute("aria-current", "page");
+        return;
+      }
+
+      link.removeAttribute("aria-current");
+    });
+  }
+
   if (toggle && nav) {
     toggle.addEventListener("click", function () {
       var isOpen = nav.classList.toggle("is-open");
