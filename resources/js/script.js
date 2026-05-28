@@ -69,9 +69,46 @@
     }
   });
 
+  function findLocalIndex(target, parentSelector, childSelector) {
+    var parent = target.closest(parentSelector);
+
+    if (!parent) {
+      return -1;
+    }
+
+    return Array.prototype.indexOf.call(parent.querySelectorAll(childSelector), target);
+  }
+
+  function getRevealOrder(target, fallbackIndex) {
+    var groups = [
+      [".stats-strip", ".stat-card"],
+      [".schedule-overview", ".schedule-card"],
+      [".timeline", ".timeline-item"],
+      [".value-list", "article"],
+      [".gallery-grid", ".gallery-card"],
+      [".faq-grid", "article"],
+      [".cta-section", ".cta-section > *"],
+      [".split-section", ".split-section > *"],
+      [".album-intro", ".album-intro > *"],
+      [".sns-section", ".sns-section > *"]
+    ];
+    var localIndex = -1;
+
+    groups.some(function (group) {
+      localIndex = findLocalIndex(target, group[0], group[1]);
+      return localIndex !== -1;
+    });
+
+    if (localIndex !== -1) {
+      return localIndex;
+    }
+
+    return fallbackIndex % 4;
+  }
+
   seenTargets.forEach(function (target, index) {
     target.classList.add("reveal-on-scroll");
-    target.style.setProperty("--reveal-delay", (index % 6) * 70 + "ms");
+    target.style.setProperty("--reveal-delay", getRevealOrder(target, index) * 70 + "ms");
   });
 
   var statNumbers = Array.prototype.slice.call(document.querySelectorAll(".stat-number"));
