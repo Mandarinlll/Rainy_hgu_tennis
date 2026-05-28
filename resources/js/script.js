@@ -40,4 +40,64 @@
       feedback.textContent = "サークル名: " + text;
     });
   }
+
+  var revealSelectors = [
+    ".hero-copy",
+    ".page-hero > div",
+    ".stat-card",
+    ".split-section > *",
+    ".philosophy-band .band-copy",
+    ".value-list article",
+    ".section-heading",
+    ".schedule-card",
+    ".timeline-item",
+    ".table-wrap",
+    ".album-intro > *",
+    ".gallery-card",
+    ".sns-section > *",
+    ".faq-grid article",
+    ".cta-section > *"
+  ];
+  var revealTargets = Array.prototype.slice.call(
+    document.querySelectorAll(revealSelectors.join(","))
+  );
+  var seenTargets = [];
+
+  revealTargets.forEach(function (target) {
+    if (seenTargets.indexOf(target) === -1) {
+      seenTargets.push(target);
+    }
+  });
+
+  seenTargets.forEach(function (target, index) {
+    target.classList.add("reveal-on-scroll");
+    target.style.setProperty("--reveal-delay", (index % 6) * 70 + "ms");
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    seenTargets.forEach(function (target) {
+      target.classList.add("is-visible");
+    });
+    return;
+  }
+
+  var revealObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: "0px 0px -12% 0px",
+      threshold: 0.16
+    }
+  );
+
+  seenTargets.forEach(function (target) {
+    revealObserver.observe(target);
+  });
 })();

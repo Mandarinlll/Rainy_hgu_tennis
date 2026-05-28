@@ -784,6 +784,58 @@ tr:last-child td {
   font-weight: 700;
 }
 
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.72s ease var(--reveal-delay, 0ms),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-copy.reveal-on-scroll,
+.page-hero > div.reveal-on-scroll {
+  transform: translateY(24px) scale(0.98);
+}
+
+.hero-copy.reveal-on-scroll.is-visible,
+.page-hero > div.reveal-on-scroll.is-visible {
+  transform: translateY(0) scale(1);
+}
+
+.gallery-card.reveal-on-scroll,
+.schedule-card.reveal-on-scroll,
+.timeline-item.reveal-on-scroll,
+.faq-grid article.reveal-on-scroll {
+  transform: translateY(30px) scale(0.985);
+}
+
+.gallery-card.reveal-on-scroll.is-visible,
+.schedule-card.reveal-on-scroll.is-visible,
+.timeline-item.reveal-on-scroll.is-visible,
+.faq-grid article.reveal-on-scroll.is-visible {
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .hero-copy.reveal-on-scroll,
+  .page-hero > div.reveal-on-scroll,
+  .gallery-card.reveal-on-scroll,
+  .schedule-card.reveal-on-scroll,
+  .timeline-item.reveal-on-scroll,
+  .faq-grid article.reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .faq-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
