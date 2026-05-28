@@ -68,6 +68,31 @@
     });
   }
 
+  var backToTopButton = document.createElement("button");
+
+  backToTopButton.className = "back-to-top";
+  backToTopButton.type = "button";
+  backToTopButton.setAttribute("aria-label", "トップへ戻る");
+  backToTopButton.setAttribute("title", "トップへ戻る");
+  backToTopButton.innerHTML = '<span aria-hidden="true">↑</span>';
+  document.body.appendChild(backToTopButton);
+
+  function updateBackToTopButton() {
+    backToTopButton.classList.toggle("is-visible", window.scrollY > 420);
+  }
+
+  backToTopButton.addEventListener("click", function () {
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotion ? "auto" : "smooth"
+    });
+  });
+
+  window.addEventListener("scroll", updateBackToTopButton, { passive: true });
+  updateBackToTopButton();
+
   var revealSelectors = [
     ".hero-copy",
     ".page-hero > div",
