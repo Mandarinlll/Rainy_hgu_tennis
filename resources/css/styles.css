@@ -163,7 +163,7 @@ button {
   z-index: -2;
   background:
     linear-gradient(115deg, rgba(23, 33, 43, 0.94) 0%, rgba(23, 33, 43, 0.86) 44%, rgba(23, 33, 43, 0.55) 100%),
-    url("assets/rainy-logo.png") right 8% center / min(520px, 54vw) no-repeat,
+    url("../images/rainy-logo.png") right 8% center / min(520px, 54vw) no-repeat,
     var(--charcoal);
   content: "";
 }
@@ -465,7 +465,7 @@ button {
   color: var(--white);
   background:
     linear-gradient(135deg, rgba(23, 33, 43, 0.95), rgba(36, 49, 59, 0.9)),
-    url("assets/rainy-logo.png") right -60px bottom -86px / 260px no-repeat;
+    url("../images/rainy-logo.png") right -60px bottom -86px / 260px no-repeat;
   border-color: transparent;
 }
 
@@ -880,7 +880,7 @@ tr:last-child td {
   .page-hero::before {
     background:
       linear-gradient(145deg, rgba(23, 33, 43, 0.96) 0%, rgba(23, 33, 43, 0.88) 64%, rgba(23, 33, 43, 0.68) 100%),
-      url("assets/rainy-logo.png") right -80px bottom 4px / 330px no-repeat,
+      url("../images/rainy-logo.png") right -80px bottom 4px / 330px no-repeat,
       var(--charcoal);
   }
 
