@@ -43,7 +43,7 @@
             テニスが好きなら誰でも大歓迎です！テニスを通じて、年齢や学部を越えたつながりを広げていきましょう！
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="https://www.instagram.com/rainy_hgu_tennis">Instagramへ</a>
+            <a class="button button-primary" href="https://www.instagram.com/rainy_hgu_tennis" target="_blank" rel="noopener noreferrer">Instagramへ</a>
             <a class="button button-secondary" href="schedule.html">スケジュールを見る</a>
           </div>
         </div>
@@ -128,7 +128,7 @@
             部員一同皆様のご参加を心よりお待ちしております！
           </p>
         </div>
-        <a class="button button-primary" a href="https://www.instagram.com/rainy_hgu_tennis">公式Instagramはこちらから</a>
+        <a class="button button-primary" href="https://www.instagram.com/rainy_hgu_tennis" target="_blank" rel="noopener noreferrer">公式Instagramはこちらから</a>
       </section>
     </main>
 
@@ -149,10 +149,16 @@
   </div>
 
   <div class="footer-bottom">
-    <p>&copy; 2026 Hokkai Gakuen University Tennis Circle Rainy. All Rights Reserved.</p>
+    <p><span id="current-year"></span> Hokkai Gakuen University Tennis Circle Rainy. All Rights Reserved.</p>
   </div>
 </footer>
 
     <script src="../resources/js/script.js"></script>
+    <script>
+      (function(){
+        var el = document.getElementById('current-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
   </body>
 </html>
